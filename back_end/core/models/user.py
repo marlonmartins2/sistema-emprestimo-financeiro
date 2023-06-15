@@ -33,10 +33,16 @@ class User(BaseModel, AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     #: models.CharField: The user name.
-    name = models.CharField(max_length=255)
+    username = models.CharField(unique=True, max_length=255)
 
     #: models.CharField: The user password.
     password = models.CharField(max_length=255)
 
     #: models.CharField: The document.
     document = models.CharField(max_length=11)
+
+    #: models.BooleanField: The is admin flag.
+    is_admin = models.BooleanField(default=False)
+
+    #: models.BooleanField: The is staff flag.
+    is_staff = models.BooleanField(default=False)
