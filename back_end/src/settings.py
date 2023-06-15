@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_filters",
 
     # Celery Apps
     "django_celery_results",
@@ -48,6 +49,11 @@ INSTALLED_APPS = [
     # Applicantion Apps
     "core",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "services.pagination.CustomPagination",
+    "PAGE_SIZE": 100
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
