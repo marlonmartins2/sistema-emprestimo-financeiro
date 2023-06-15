@@ -27,8 +27,6 @@ def process_proposals(self):
 
             document_is_valid = cpf.validate(proposal.document)
 
-            print(document_is_valid)
-
             if document_is_valid and proposal.proposal_value >= 1000:
                 proposal.status = "accepted"
                 proposal.save()

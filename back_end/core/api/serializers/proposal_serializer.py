@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-from core.api import viewsets
-
 from core.models import Proposal
 
 
