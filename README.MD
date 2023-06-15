@@ -12,6 +12,7 @@
 - Postgres 12.7 (alpine)
 - RabbitMQ 3.9 (alpine)
 - Gunicorn 20.x
+- VueJs 3.x
 
 ## :train2: Considerações - Makefile
 
