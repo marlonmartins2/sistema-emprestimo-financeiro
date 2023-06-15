@@ -1,0 +1,67 @@
+version: "3"
+services:
+  database:
+    container_name: database
+    restart: always
+    image: postgres:12.7-alpine
+    environment:
+      - POSTGRES_DB=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    container_name: backend
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    command: >
+      sh -c "python manage.py wait_for_db &&
+            python manage.py migrate &&
+            python manage.py collectstatic --noinput &&
+            gunicorn -b 0.0.0.0:8000 --worker-class=gevent --worker-connections=1000 --workers=2 src.wsgi"
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    image: rabbitmq:3.9-alpine
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  celeryworker:
+    container_name: celeryworker
+    build: .
+    volumes:
+      - ./:/backend
+    command: celery -A src worker --pool=prefork -l info
+    depends_on:
+      - rabbitmq
+
+  celerybeat:
+    container_name: celerybeat
+    build: .
+    volumes:
+      - ./:/backend
+    command: celery -A src beat -l info
+    depends_on:
+      - celeryworker
+
+  celeryflower:
+    container_name: celeryflower
+    build: .
+    volumes:
+      - ./:/backend
+    command: celery -A src flower -l info
+    ports:
+      - "5555:5555"
+    depends_on:
+      - celeryworker
+
+volumes:
+  db_data:
+  rabbitmq_data:
