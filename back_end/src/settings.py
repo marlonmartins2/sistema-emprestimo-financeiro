@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = "core.User"
 
 # Application definition
 INSTALLED_APPS = [
@@ -91,14 +92,21 @@ WSGI_APPLICATION = "src.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "admin",
-        "USER": "admin",
-        "PASSWORD": "password",
-        "HOST": "database",
-        "PORT": 5432,
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "admin",
+#         "USER": "admin",
+#         "PASSWORD": "password",
+#         "HOST": "database",
+#         "PORT": 5432,
+#     }
+# }
 
 
 # Password validation
