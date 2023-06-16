@@ -27,7 +27,9 @@ class ProposalSerializer(serializers.ModelSerializer):
             "address",
             "proposal_value",
             "status",
+            "created_at",
         ]
         extra_kwargs = {
             "status": {"read_only": True},
+            "created_at": {"read_only": True},
         }
