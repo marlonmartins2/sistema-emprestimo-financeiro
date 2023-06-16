@@ -1,8 +1,8 @@
 
-<h1 align="center">Sistema de emprestimo financeiro</h1>
+<h1 align="center">Sistema de empréstimo financeiro</h1>
 
 <h3 align="center">
-  # Sistema de emprestimo financeiro para pessoa física.
+  # Sistema de empréstimo financeiro para pessoa física.
 </h3>
 
 ## :rocket: Stack
