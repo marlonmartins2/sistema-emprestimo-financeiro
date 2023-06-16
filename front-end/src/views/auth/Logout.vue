@@ -8,6 +8,7 @@
 
 <script>
 import axios from 'axios'
+import { toast } from 'bulma-toast'
 export default {
     name: 'Logout',
     methods: {
@@ -19,6 +20,15 @@ export default {
             localStorage.removeItem('refresh')
 
             this.$store.commit('removeToken')
+
+            toast({
+                message: 'Logout Concluído',
+                type: 'is-warning',
+                dismissible: true,
+                pauseOnHover: true,
+                position: 'top-center',
+                duration: 2000
+            })
 
             this.$router.push('/')
         }

@@ -77,8 +77,8 @@ front_clean: ## Limpa o front-end
 	@cd front_end && npm run clean
 
 ## @ docker
-.PHONY: docker_up docker_run docker_stop docker_clean docker_full
-docker_full: # roda o front e o docker
+.PHONY: docker_full docker_up docker_run docker_stop docker_clean
+docker_full: ## roda o front e o backend em conjunto.
 	@cd back_end && docker-compose up --build -d
 	@cd front-end && npm install && npm run serve
 docker_up: ## Builda a imagem do docker
