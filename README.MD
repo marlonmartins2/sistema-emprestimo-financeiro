@@ -44,7 +44,7 @@ cd sistema-emprestimo-financeiro/
 Use o Makefile para instalar e iniciar o sistema localmente com suas dependências:
 
 ```bash
-make docker_up
+make docker_full
 ```
 
 ## :evergreen_tree: Branchs
