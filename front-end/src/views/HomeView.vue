@@ -65,7 +65,7 @@
 
 <script>
 import axios from 'axios'
-import { vMaska } from "maska"
+import { toast } from 'bulma-toast'
 
 export default {
   name: 'HomeView',
@@ -114,10 +114,32 @@ export default {
 
       axios.post('http://localhost:8000/api/proposals/', formData)
         .then(response => {
-          console.log(response)
+          toast({
+            message: 'Proposta cadastrada com sucesso.',
+            type: 'is-success',
+            dismissible: true,
+            pauseOnHover: true,
+            position: 'top-center',
+            duration: 2000
+          })
+
+          this.full_name = ''
+          this.document = ''
+          this.address = ''
+          this.complement = ''
+          this.zip_code = ''
+          this.proposal_value = ''
         })
         .catch(e => {
-          console.log(e)
+          toast({
+            message: 'Erro ao cadastrar proposta.',
+            type: 'is-danger',
+            dismissible: true,
+            pauseOnHover: true,
+            position: 'top-center',
+            duration: 2000
+          })
+
         })
     }
   },

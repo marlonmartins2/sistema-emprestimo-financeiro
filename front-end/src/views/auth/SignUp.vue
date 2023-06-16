@@ -43,6 +43,7 @@
 
 <script>
 import axios from 'axios'
+import { toast } from 'bulma-toast'
 
 export default {
     name: 'SignUp',
@@ -82,8 +83,14 @@ export default {
                 axios
                     .post("api/user/", formData)
                     .then(response => {
-                        console.log(response)
-
+                        toast({
+                            message: 'Cadastro realizado com sucesso!',
+                            type: 'is-success',
+                            dismissible: true,
+                            pauseOnHover: true,
+                            position: 'top-center',
+                            duration: 2000
+                        })
                         this.$router.push('/login')
                     })
                     .catch(error => {
@@ -96,6 +103,15 @@ export default {
                         } else {
                             console.log(JSON.stringify(error.response.data))
                         }
+
+                        toast({
+                            message: this.errors,
+                            type: 'is-danger',
+                            dismissible: true,
+                            pauseOnHover: true,
+                            position: 'top-center',
+                            duration: 2000
+                        })
                     })
             }
         }
