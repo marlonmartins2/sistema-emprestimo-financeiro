@@ -16,7 +16,7 @@
           <div class="field">
             <label>CPF</label>
               <div class="control">
-                <input type="text" class="input"  v-maska data-maska="###.###.###-##" name="document" v-model="document">
+                <input type="number" class="input"  v-maska data-maska="###.###.###-##" name="document" v-model="document">
               </div>
           </div>
 
@@ -37,7 +37,7 @@
           <div class="field">
             <label>CEP</label>
               <div class="control">
-                <input type="text" class="input" name="zip_code" v-model="zip_code">
+                <input type="number" class="input" name="zip_code" v-model="zip_code">
               </div>
           </div>
 

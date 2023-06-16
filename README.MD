@@ -47,6 +47,25 @@ Use o Makefile para instalar e iniciar o sistema localmente com suas dependênci
 make docker_full
 ```
 
+## :zap: Acessando o sistema
+
+Após a execução do comando `make docker_full` o sistema estará disponível em:
+
+- [http://localhost:8080](http://localhost:8080) : Front-end
+
+- [http://localhost:8000](http://localhost:8000) : Back-end
+
+- [http://localhost:8000/admin](http://localhost:8000/admin) : Back-end (admin)
+
+- [http://localhost:5555](http://localhost:5555) : Flower(Celery)
+
+
+### :warning: Observações :warning:
+
+- O usuário criado via front-end dará acesso ao `admin` do django.
+
+- O endereço digitado não é exibito no front-end, mas é salvo no banco de dados conseguirá acesso a ele entrando no `admin` do django e acessando o detalhe da proposta.
+
 ## :evergreen_tree: Branchs
 
 O projeto por hora só contem uma _branch_:

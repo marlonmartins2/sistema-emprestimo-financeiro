@@ -8,14 +8,14 @@
                     <div class="field">
                         <label>Usuário</label>
                         <div class="control">
-                            <input class="input" type="text" name="username" v-model="username">
+                            <input class="input" type="text" required="" name="username" v-model="username">
                         </div>
                     </div>
 
                     <div class="field">
                         <label>Senha</label>
                         <div class="control">
-                            <input class="input" type="password"  name="password" v-model="password">
+                            <input class="input" type="password" required="" name="password" v-model="password">
                         </div>
                     </div>
 

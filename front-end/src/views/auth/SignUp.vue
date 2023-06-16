@@ -6,23 +6,23 @@
 
                 <form @submit.prevent="submitForm">
                     <div class="field">
-                        <label>Username</label>
+                        <label>Username *</label>
                         <div class="control">
-                            <input class="input" type="text" name="username" v-model="username">
+                            <input class="input"  required="" type="text" name="username" v-model="username">
                         </div>
                     </div>
 
                     <div class="field">
                         <label>CPF</label>
                         <div class="control">
-                            <input type="text" class="input" name="document" v-model="document">
+                            <input type="number" class="input" name="document" v-model="document">
                         </div>
                     </div>
 
                     <div class="field">
-                        <label>Senha</label>
+                        <label>Senha *</label>
                         <div class="control">
-                            <input class="input" type="password"  name="password" v-model="password">
+                            <input class="input" type="password" required="" name="password" v-model="password">
                         </div>
                     </div>
 
@@ -69,10 +69,6 @@ export default {
 
             if (formData.password === '') {
                 this.errors.push('Senha é obrigatória.')
-            }
-
-            if (formData.document === '') {
-                this.errors.push('CPF é obrigatório.')
             }
 
             if (formData.password.length < 8) {
