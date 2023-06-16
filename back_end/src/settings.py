@@ -25,7 +25,15 @@ SECRET_KEY = "django-insecure-zg6zojjnve^x1#j$3(2ok8fdos-=lr!@9tr@fk1w-4x#0a+-d&
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "https://localhost:8080",
+    "https://localhost:8081",
+    "https://127.0.0.1:8080",
+]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = "core.User"
 
@@ -39,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_filters",
+    "corsheaders",
 
     # Celery Apps
     "django_celery_results",
@@ -46,12 +55,19 @@ INSTALLED_APPS = [
 
     # Django Rest Framework Apps
     "rest_framework",
+    "rest_framework_simplejwt",
 
     # Applicantion Apps
     "core",
 ]
 
 REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
     "DEFAULT_PAGINATION_CLASS": "services.pagination.CustomPagination",
     "PAGE_SIZE": 100
 }
@@ -59,6 +75,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

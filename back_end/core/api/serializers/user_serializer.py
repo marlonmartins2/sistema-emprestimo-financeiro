@@ -33,9 +33,18 @@ class UserSerializer(serializers.ModelSerializer):
             "is_admin": {"read_only": True},
             "is_staff": {"read_only": True},
             "created_at": {"read_only": True},
+            "password": {"write_only": True},
+            "document": {"read_only": True},
         }
 
     def create(self, validated_data):
         validated_data["is_admin"] = True
         validated_data["is_staff"] = True
-        return super().create(validated_data)
+
+        password = validated_data.pop("password")
+
+        instance = self.Meta.model(**validated_data)
+        instance.set_password(password)
+        instance.save()
+
+        return instance
