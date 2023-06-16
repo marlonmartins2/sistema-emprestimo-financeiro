@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Dashboard from '../views/dashboard/Dashboard.vue'
 import SignUp from '../views/auth/SignUp.vue'
 import Login from '../views/auth/Login.vue'
+import Logout from '../views/auth/Logout.vue'
 
 import store from '../store/index.js'
 
@@ -29,6 +30,14 @@ const routes = [
     path: '/register',
     name: 'SignUp',
     component: SignUp,
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout,
+    meta: {
+      requireLogin: true
+    }
   },
 ]
 
