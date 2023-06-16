@@ -2,13 +2,19 @@
   <div id="wrapper">
     <nav class="navbar is-dark">
       <div class="navbar-brand">
-        <router-link to="/" class="navbar-item"><strong>Emprestimo Pessoal</strong></router-link>
+        <router-link to="/" class="navbar-item"><strong>Empréstimo Pessoal</strong></router-link>
       </div>
 
       <div class="navbar-menu">
         <div class="navbar-end">
           <template v-if="$store.state.isAuthenticated">
-            <router-link to="/logout" class="navbar-item">Logout</router-link>
+            <router-link to="/dashboard" class="navbar-item">Mesa Operações</router-link>
+
+            <div class="navbar-item">
+              <div class="buttons">
+                <router-link to="/logout" class="button is-light"><strong>Logout</strong></router-link>
+              </div>
+            </div>
           </template>
 
           <template v-else>
