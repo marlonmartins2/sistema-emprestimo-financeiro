@@ -24,4 +24,4 @@ app.conf.beat_schedule = {
 
 @app.task(bind=True)
 def health_check(self):
-    print("OK.")
+    return True

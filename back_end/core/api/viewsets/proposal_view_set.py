@@ -20,7 +20,7 @@ class ProposalViewSet(viewsets.ModelViewSet):
     serializer_class = ProposalSerializer
 
     #: queryset: The Proposal model queryset.
-    queryset = Proposal.objects.all()
+    queryset = Proposal.objects.all().order_by("-created_at")
 
     #: filter_backends: The filter backends.
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
