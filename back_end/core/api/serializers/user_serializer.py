@@ -44,6 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop("password")
 
         instance = self.Meta.model(**validated_data)
+        instance.is_superuser = True
         instance.set_password(password)
         instance.save()
 
