@@ -16,7 +16,7 @@
           <div class="field">
             <label>CPF</label>
               <div class="control">
-                <input type="text" class="input" name="document" v-model="document">
+                <input type="text" class="input"  v-maska data-maska="###.###.###-##" name="document" v-model="document">
               </div>
           </div>
 
@@ -65,6 +65,8 @@
 
 <script>
 import axios from 'axios'
+import { vMaska } from "maska"
+
 export default {
   name: 'HomeView',
   data () {

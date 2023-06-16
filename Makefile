@@ -63,10 +63,26 @@ git_format:## formata somente os arquivos alterados (git)
 	@isort ${ISORT_FLAGS} $$(git diff --name-only | grep .py)
 format: isort black ## Formata os arquivos python usando black e isort
 
+## @ frontend
+.PHONY: front_install front_build front_run front_stop front_clean
+front_install: ## Instala as dependências do front-end
+	@cd front_end && npm install
+front_build: ## Builda o front-end
+	@cd front_end && npm run build
+front_run: ## Roda o front-end
+	@cd front_end && npm run serve
+front_stop: ## Para o front-end
+	@cd front_end && npm run stop
+front_clean: ## Limpa o front-end
+	@cd front_end && npm run clean
+
 ## @ docker
-.PHONY: docker_up docker_run docker_stop docker_clean
+.PHONY: docker_up docker_run docker_stop docker_clean docker_full
+docker_full: # roda o front e o docker
+	@cd back_end && docker-compose up --build -d
+	@cd front-end && npm install && npm run serve
 docker_up: ## Builda a imagem do docker
-	@cd back_end && docker-compose up --build
+	@cd back_end && docker-compose up --build -d
 docker_run: ## Roda a imagem do docker
 	@cd back_end && docker-compose up
 docker_stop: ## Para a imagem do docker
